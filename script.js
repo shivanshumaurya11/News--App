@@ -1,5 +1,7 @@
 const API_KEY ="b6500c02fab54ee194f66dbea4d583ec";
-const url = "https://newsapi.org/v2/everything?q=";
+
+// FIXED API URL
+const BASE_URL = "https://newsapi.org/v2/everything";
 
 window.addEventListener("load", () => fetchNews("India"));
 
@@ -8,7 +10,7 @@ function reload() {
 }
 
 async function fetchNews(query) {
-    const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+    const res = await fetch(`${BASE_URL}?q=${query}&apiKey=${API_KEY}`);
     const data = await res.json();
     bindData(data.articles);
 }
@@ -67,36 +69,34 @@ searchButton.addEventListener("click", () => {
     curSelectedNav?.classList.remove("active");
     curSelectedNav = null;
 });
+
 let mybutton = document.getElementById("btn");
-window.onscroll = function()
-{scrollFunction()};
-function scrollFunction(){
-    if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
+window.onscroll = function() { scrollFunction() };
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         mybutton.style.display = "block";
-    }
-    else{
+    } else {
         mybutton.style.display = "none";
     }
 }
-function topFunction(){
-    document.documentElement.scrollTop = 0;
 
+function topFunction() {
+    document.documentElement.scrollTop = 0;
 }
+
 const toggle = document.getElementById('toggleDark');
 const body = document.querySelector('body');
 
-toggle.addEventListener('click', function(){
+toggle.addEventListener('click', function() {
     this.classList.toggle('bi-moon');
-    if(this.classList.toggle('bi-brightness-high-fill')){
+    if (this.classList.toggle('bi-brightness-high-fill')) {
         body.style.background = '#0a0d30';
         body.style.color = '#183b56';
         body.style.transition = '1s';
-    }
-    else{
+    } else {
         body.style.background = 'white';
         body.style.color = 'black';
         body.style.transition = '1s';
     }
-
 });
-
