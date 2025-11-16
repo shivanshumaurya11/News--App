@@ -1,4 +1,4 @@
-const API_KEY ="f1dc10ed0dcc4aab8cd8a6d454112121";
+const API_KEY ="30ae98a7-9c80-4c7a-8fc6-e72696298512";
 const url = "https://newsapi.org/v2/everything?q=";
 
 window.addEventListener("load", () => fetchNews("India"));
@@ -97,4 +97,5 @@ toggle.addEventListener('click', function(){
         body.style.color = 'black';
         body.style.transition = '1s';
     }
+
 });
