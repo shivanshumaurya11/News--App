@@ -1,4 +1,3 @@
-// Using Netlify Serverless Function instead of direct API call
 const PROXY_URL = "/.netlify/functions/news";
 
 window.addEventListener("load", () => fetchNews("India"));
@@ -8,9 +7,19 @@ function reload() {
 }
 
 async function fetchNews(query) {
-    const res = await fetch(`${PROXY_URL}?q=${query}`);
-    const data = await res.json();
-    bindData(data.articles || []);
+    try {
+        const res = await fetch(`${PROXY_URL}?q=${encodeURIComponent(query)}`);
+        const data = await res.json();
+
+        if (!data || data.status === "error" || !data.articles) {
+            console.error("API error:", data);
+            return;
+        }
+
+        bindData(data.articles);
+    } catch (err) {
+        console.error("Fetch failed:", err);
+    }
 }
 
 function bindData(articles) {
@@ -21,6 +30,7 @@ function bindData(articles) {
 
     articles.forEach((article) => {
         if (!article.urlToImage) return;
+
         const cardClone = newsCardTemplate.content.cloneNode(true);
         fillDataInCard(cardClone, article);
         cardsContainer.appendChild(cardClone);
@@ -34,14 +44,14 @@ function fillDataInCard(cardClone, article) {
     const newsDesc = cardClone.querySelector("#news-desc");
 
     newsImg.src = article.urlToImage;
-    newsTitle.innerHTML = article.title;
-    newsDesc.innerHTML = article.description;
+    newsTitle.innerHTML = article.title || "";
+    newsDesc.innerHTML = article.description || "";
 
     const date = new Date(article.publishedAt).toLocaleString("en-US", {
         timeZone: "Asia/Jakarta",
     });
 
-    newsSource.innerHTML = `${article.source.name} · ${date}`;
+    newsSource.innerHTML = `${article.source?.name || "Unknown"} · ${date}`;
 
     cardClone.firstElementChild.addEventListener("click", () => {
         window.open(article.url, "_blank");
@@ -49,54 +59,56 @@ function fillDataInCard(cardClone, article) {
 }
 
 let curSelectedNav = null;
+
 function onNavItemClick(id) {
     fetchNews(id);
     const navItem = document.getElementById(id);
+
     curSelectedNav?.classList.remove("active");
     curSelectedNav = navItem;
+
     curSelectedNav.classList.add("active");
 }
 
 const searchButton = document.getElementById("search-button");
 const searchText = document.getElementById("search-text");
 
-searchButton.addEventListener("click", () => {
+searchButton?.addEventListener("click", () => {
     const query = searchText.value;
     if (!query) return;
+
     fetchNews(query);
     curSelectedNav?.classList.remove("active");
     curSelectedNav = null;
 });
 
 let mybutton = document.getElementById("btn");
-window.onscroll = function () {
-    scrollFunction();
-};
 
-function scrollFunction() {
+window.onscroll = function () {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         mybutton.style.display = "block";
     } else {
         mybutton.style.display = "none";
     }
-}
+};
 
 function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 
-const toggle = document.getElementById("toggleDark");
-const body = document.querySelector("body");
+const toggle = document.getElementById('toggleDark');
+const body = document.querySelector('body');
 
-toggle.addEventListener("click", function () {
-    this.classList.toggle("bi-moon");
-    if (this.classList.toggle("bi-brightness-high-fill")) {
-        body.style.background = "#0a0d30";
-        body.style.color = "#183b56";
-        body.style.transition = "1s";
+toggle?.addEventListener('click', function () {
+    this.classList.toggle('bi-moon');
+
+    if (this.classList.toggle('bi-brightness-high-fill')) {
+        body.style.background = '#0a0d30';
+        body.style.color = '#183b56';
+        body.style.transition = '1s';
     } else {
-        body.style.background = "white";
-        body.style.color = "black";
-        body.style.transition = "1s";
+        body.style.background = 'white';
+        body.style.color = 'black';
+        body.style.transition = '1s';
     }
 });
