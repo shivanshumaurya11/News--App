@@ -96,10 +96,10 @@ main{margin-top:100px;padding:28px 0 60px}
 
 @media (max-width:768px){
   .menu-icon{display:block} */
-  .search-bar{width:100px} /* hide the search area on smaller screens to save space */
+   /* hide the search area on smaller screens to save space */
 
-  /* mobile nav sliding panel
-  
+  /* mobile nav sliding panel*/
+.search-bar{width:100px}
 .search-button{
   padding:8px 14px;border-radius:6px;border:0;background:#22ed33b3;color:white;cursor:pointer;font-weight:600;
 }
@@ -145,5 +145,6 @@ body.light-mode .search-button{background:#0b78d1}
 
 /* small visual polish */
 a,button{font-family:inherit}
+
 
 
