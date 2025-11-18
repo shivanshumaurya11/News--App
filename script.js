@@ -10,32 +10,7 @@ const DEFAULT_QUERY = "India";
    Sample fallback news
    (used when fetch fails or returns nothing)
    --------------------- */
-const SAMPLE_NEWS = [
-  {
-    title: "Local startup raises seed round to scale AI tools",
-    description: "A promising team announced funding to build developer tools for small businesses.",
-    urlToImage: "https://images.unsplash.com/photo-1526378722482-5f6f8f3efb9a",
-    url: "#",
-    publishedAt: new Date().toISOString(),
-    source: { name: "LocalTech" }
-  },
-  {
-    title: "Sports: thrilling comeback seals championship",
-    description: "An incredible last-minute winner sparked celebrations across the city.",
-    urlToImage: "https://images.unsplash.com/photo-1509228627153-1a7a1838b6f7",
-    url: "#",
-    publishedAt: new Date().toISOString(),
-    source: { name: "Sports Daily" }
-  },
-  {
-    title: "Science: New discovery hints at cleaner batteries",
-    description: "Researchers publish promising lab results toward longer-lasting batteries.",
-    urlToImage: "https://images.unsplash.com/photo-1542751371-adc38448a05e",
-    url: "#",
-    publishedAt: new Date().toISOString(),
-    source: { name: "ScienceWire" }
-  }
-];
+
 
 /* ==========================
    Helpers & DOM refs
@@ -225,3 +200,4 @@ window.addEventListener("resize", () => {
     navLinks.setAttribute("aria-hidden", "false");
   }
 });
+
