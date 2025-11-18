@@ -95,10 +95,16 @@ main{margin-top:100px;padding:28px 0 60px}
 }
 
 @media (max-width:768px){
-  /* .menu-icon{display:block} */
-  /* .search-bar{display:none} /* hide the search area on smaller screens to save space */ */
+  .menu-icon{display:block} */
+  .search-bar{width:100px} /* hide the search area on smaller screens to save space */
 
-  /* mobile nav sliding panel */
+  /* mobile nav sliding panel
+  
+.search-button{
+  padding:8px 14px;border-radius:6px;border:0;background:#22ed33b3;color:white;cursor:pointer;font-weight:600;
+}
+.search-button:hover{background:#1d69a3;color:aqua}
+.icon-btn{background:transparent;border:0;color:white;font-size:20px;cursor:pointer;padding:4px}
   .nav-links{
     position:fixed;top:78px;right:-300px;width:260px;height:calc(100vh - 78px);
     background:linear-gradient(180deg, rgba(0,0,0,0.97), rgba(0,0,0,0.95));
@@ -111,6 +117,12 @@ main{margin-top:100px;padding:28px 0 60px}
 
 /* Very small */
 @media (max-width:420px){
+  .search-bar{width:100px}
+.search-button{
+  padding:8px 14px;border-radius:6px;border:0;background:#22ed33b3;color:white;cursor:pointer;font-weight:600;
+}
+.search-button:hover{background:#1d69a3;color:aqua}
+.icon-btn{background:transparent;border:0;color:white;font-size:20px;cursor:pointer;padding:4px}
   .company-logo img{width:72px}
   .card-header img{height:150px}
   .nav-links{width:220px}
@@ -133,4 +145,5 @@ body.light-mode .search-button{background:#0b78d1}
 
 /* small visual polish */
 a,button{font-family:inherit}
+
 
