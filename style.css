@@ -95,8 +95,8 @@ main{margin-top:100px;padding:28px 0 60px}
 }
 
 @media (max-width:768px){
-  .menu-icon{display:block}
-  .search-bar{display:none} /* hide the search area on smaller screens to save space */
+  /* .menu-icon{display:block} */
+  /* .search-bar{display:none} /* hide the search area on smaller screens to save space */ */
 
   /* mobile nav sliding panel */
   .nav-links{
@@ -133,3 +133,4 @@ body.light-mode .search-button{background:#0b78d1}
 
 /* small visual polish */
 a,button{font-family:inherit}
+
